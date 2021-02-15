@@ -22,7 +22,6 @@
     "gatsby-plugin-manifest": "^2.12.0",
     "gatsby-plugin-material-ui": "^2.1.10",
     "gatsby-plugin-preact": "^4.7.0",
-    "gatsby-plugin-preload-fonts": "^1.9.0",
     "gatsby-plugin-react-head": "^1.1.0",
     "gatsby-plugin-remove-console": "^0.0.2",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.20",
@@ -64,9 +63,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "echo 'HAVE YOU PRELOADED FONTS?' && cross-env NODE_ENV=production gatsby build",
+    "build": "cross-env NODE_ENV=production gatsby build",
     "build:ci": "cross-env NODE_ENV=production gatsby build --verbose",
-    "preload-fonts": "gatsby-preload-fonts",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -74,7 +72,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy:pages": "yarn build && gh-pages -b prod -d public -m \"Deploy website\"",
-    "lint": "eslint ."
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",
