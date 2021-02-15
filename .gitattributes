@@ -1,0 +1,5 @@
+* text eol=crlf
+*.png -text
+*.jpg -text
+src/assets/*.png -text
+static/*.png -text

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext" /* or at least ES2015 */,
+    "module": "ESNext" /* or at least ES2015 */,
+    "lib": ["dom"] /* <-- required! */,
+    "jsx": "react" /* <-- required! */,
+    "moduleResolution": "node" /* <-- required! */,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist", // not actually used
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts"]
+}
