@@ -3,7 +3,7 @@ name: Smoketest
 on:
   push:
     branches:
-      - "master"
+      - "main"
   pull_request:
 
 jobs:
@@ -153,7 +153,7 @@ jobs:
 
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: prod
