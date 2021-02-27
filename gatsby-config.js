@@ -42,8 +42,8 @@ module.exports = {
         name: `Let me really Google that for you`,
         short_name: `LMRGTFY`,
         start_url: `/`,
-        background_color: `#E04303`,
-        theme_color: `#E04303`,
+        background_color: `#2196f3`,
+        theme_color: `#2196f3`,
         display: `minimal-ui`,
         icon: `src/assets/icon.png`, // This path is relative to the root of the site.
       },
