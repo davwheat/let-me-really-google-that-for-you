@@ -115,6 +115,7 @@ jobs:
         run: yarn format:check
 
   build:
+    name: Build code and deploy to production
     runs-on: ubuntu-latest
     needs: [lint, formatting]
 
