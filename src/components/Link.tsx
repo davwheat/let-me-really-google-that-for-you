@@ -6,6 +6,14 @@ import ScrollTo from '../functions/ScrollTo'
 import { Link as GatsbyLink } from 'gatsby'
 
 const useStyles = makeStyles({
+  buttonLink: {
+    border: 'none',
+    appearance: 'none',
+    background: 'none',
+    outline: 'none',
+    padding: 0,
+    margin: 0,
+  },
   link: {
     color: Colors.primary,
     display: 'inline-block',
@@ -28,24 +36,12 @@ interface Props {
   className?: string
   id?: string
   target?: '_blank' | '_self' | '_parent' | '_top' | string
-  /**
-   * Text colour (overrides `color`)
-   */
-  textColor?: string
-  /**
-   * Border colour (overrides `color`)
-   */
-  borderColor?: string
-  /**
-   * Text and border colour
-   */
-  color?: string
 }
 
 /**
- * Creates an `<a>` tag which conforms to the design scheme.
+ * Creates an `<a>` or `<button>` tag which conforms to the design scheme.
  */
-const Link: React.FC<Props> = ({ internal = false, url, title, onClick, className, id, children, textColor, borderColor, color, target }) => {
+const Link: React.FC<Props> = ({ internal = false, url, title, onClick, className, id, children, target }) => {
   const classes = useStyles()
 
   const isAnchor = typeof url === 'string' && url.startsWith('#')
@@ -61,10 +57,6 @@ const Link: React.FC<Props> = ({ internal = false, url, title, onClick, classNam
           typeof onClick === 'function' && onClick(e)
         }
       : onClick,
-    style: {
-      color: textColor || color,
-      borderBottomColor: borderColor || color,
-    },
     rel: 'noopener noreferrer',
     title,
     id,
@@ -79,8 +71,14 @@ const Link: React.FC<Props> = ({ internal = false, url, title, onClick, classNam
     )
   }
 
-  if (!url) {
-    return <button {...newProps}>{children}</button>
+  if (onClick || !url) {
+    const { className: btnClassName } = newProps
+
+    return (
+      <button {...newProps} className={clsx(btnClassName, classes.buttonLink)}>
+        {children}
+      </button>
+    )
   }
 
   return <a {...newProps}>{children}</a>
