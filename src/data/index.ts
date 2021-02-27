@@ -21,15 +21,15 @@ const SearchEngines: SearchEngine[] = [
   {
     name: 'Google',
     id: 'g',
-    createSearchUrl: query => `https://google.com/search?q=${encodeURI(query)}`,
-    createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURI(query)}`,
+    createSearchUrl: query => `https://google.com/search?q=${encodeURIComponent(query)}`,
+    createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURIComponent(query)}`,
     siteUrl: 'google.com',
   },
   {
     name: 'DuckDuckGo',
     id: 'ddg',
-    createSearchUrl: query => `https://duckduckgo.com/?q=${encodeURI(query)}`,
-    createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURI(query)}&se=ddg`,
+    createSearchUrl: query => `https://duckduckgo.com/?q=${encodeURIComponent(query)}`,
+    createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURIComponent(query)}&se=ddg`,
     siteUrl: 'duckduckgo.com',
   },
 ]

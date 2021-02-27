@@ -18,7 +18,7 @@ const IndexPage: React.FC = () => {
   const searchEngineId: SearchEngineId = queryParams.se || 'g'
 
   const pageContent = searchQuery ? (
-    <ShowSearchAnimation searchQuery={decodeURI(searchQuery.toString())} searchEngineId={searchEngineId} />
+    <ShowSearchAnimation searchQuery={decodeURIComponent(searchQuery.toString())} searchEngineId={searchEngineId} />
   ) : (
     <EnterSearchQuery />
   )
