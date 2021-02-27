@@ -7,6 +7,7 @@ import BodySection from './BodySection'
 import { makeStyles } from '@material-ui/styles'
 
 import { version } from '../../package.json'
+import { SearchEngineNames } from '../data'
 
 const useStyles = makeStyles({
   contactLinks: {
@@ -21,6 +22,8 @@ const useStyles = makeStyles({
   },
 })
 
+const searchEngineNames = SearchEngineNames.join(', ')
+
 const Footer: React.FC = () => {
   const classes = useStyles()
 
@@ -34,7 +37,7 @@ const Footer: React.FC = () => {
         by David Wheatley - &copy; {new Date().getFullYear()} All Rights Reserved
       </Whisper>
 
-      <Whisper>Google, DuckDuckGo and LMGTFY are trademarks of their respective owners.</Whisper>
+      <Whisper>{searchEngineNames} and LMGTFY are trademarks of their respective owners.</Whisper>
 
       <Whisper>Website version {version}</Whisper>
 

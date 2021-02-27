@@ -36,4 +36,6 @@ const SearchEngines: SearchEngine[] = [
 
 const SearchEngineIds: SearchEngineId[] = SearchEngines.reduce((arr, se) => [...arr, se.id], [])
 
-export { Colors, Breakpoints, SearchEngines, SearchEngineIds }
+const SearchEngineNames: SearchEngine['name'][] = SearchEngines.reduce((arr, se) => [...arr, se.name], [])
+
+export { Colors, Breakpoints, SearchEngines, SearchEngineIds, SearchEngineNames }
