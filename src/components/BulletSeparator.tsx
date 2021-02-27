@@ -1,7 +1,6 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core'
 import { Colors } from '../data'
-import clsx from 'clsx'
 
 const useStyles = makeStyles({
   separator: {
@@ -13,19 +12,12 @@ const useStyles = makeStyles({
     marginRight: 8,
     color: Colors.dark,
   },
-  light: {
-    color: Colors.offWhite,
-  },
 })
 
-interface Props {
-  color?: 'dark' | 'light'
-}
-
-const BulletSeparator: React.FC<Props> = ({ color = 'dark' }) => {
+const BulletSeparator: React.FC = () => {
   const classes = useStyles()
 
-  return <span className={clsx(classes.separator, color === 'light' && classes.light)}>•</span>
+  return <span className={classes.separator}>•</span>
 }
 
 export default BulletSeparator
