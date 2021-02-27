@@ -17,7 +17,11 @@ const useStyles = makeStyles({
 const BulletSeparator: React.FC = () => {
   const classes = useStyles()
 
-  return <span className={classes.separator}>•</span>
+  return (
+    <span role="separator" className={classes.separator}>
+      •
+    </span>
+  )
 }
 
 export default BulletSeparator
