@@ -7,7 +7,6 @@ import CopyIcon from 'mdi-react/ContentCopyIcon'
 import BodySection from '../BodySection'
 import { SearchEngines } from '../../data'
 
-import generateTransitions from '../../functions/generateTransitions'
 import copy from 'copy-text-to-clipboard'
 import clsx from 'clsx'
 import getSearchEngineFromId from '../../functions/getSearchEngineFromId'

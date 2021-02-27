@@ -9,7 +9,6 @@ import VirtualCursor from '../VirutalCursor'
 import GoogleLogo from '../../../assets/search-engines/google/logo.inline.svg'
 
 import { SearchAnimation } from '../../../@types/enums'
-import { SearchEngines } from '../../../data'
 import SearchAnimationBoxes from '../SearchAnimationBoxes'
 
 import type { Props as VirtualCursorProps } from '../VirutalCursor'
@@ -162,9 +161,6 @@ const GoogleSearchAnimation: React.FC<SearchAnimationProps> = ({ searchQuery, se
       y: elementPositions.searchButton.y + elementPositions.searchButton.height * (3 / 4),
     }
   }
-
-  console.log('Anim: ', currentAnimation)
-  console.log('Transformation: ', transformation)
 
   function completeSearch() {
     location.href = finalSearchUrl
