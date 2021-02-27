@@ -35,14 +35,8 @@ const useStyles = makeStyles({
   generatedUrlContainer: {
     maxWidth: '100%',
     marginTop: 36,
-    opacity: 0,
-    visibility: 'collapse',
-    ...generateTransitions('opacity'),
   },
-  urlCreated: {
-    opacity: 1,
-    visibility: 'visible',
-  },
+  urlCreated: {},
   urlTextBox: {
     width: 400,
     maxWidth: '100%',
@@ -84,7 +78,7 @@ const EnterSearchQuery: React.FC = () => {
           value={lmrgtfyUrl}
           InputProps={{
             readOnly: true,
-            endAdornment: (
+            endAdornment: !lmrgtfyUrl ? null : (
               <InputAdornment position="end">
                 <Tooltip title="Copy link">
                   <IconButton aria-label="copy link" onClick={() => copy(urlTextBoxRef.current.value)} edge="end">

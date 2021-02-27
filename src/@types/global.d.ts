@@ -14,5 +14,11 @@ declare global {
      */
     createLmrgtfyUrl: (q: string) => string
     id: SearchEngineId
+    siteUrl: string
+  }
+
+  export interface SearchAnimationProps {
+    searchQuery: string
+    searchEngine: SearchEngine
   }
 }

@@ -20,6 +20,9 @@ const useStyles = makeStyles({
   noMaxWidth: {
     maxWidth: 'none',
   },
+  center: {
+    textAlign: 'center',
+  },
 })
 
 interface Props {
@@ -27,14 +30,15 @@ interface Props {
   innerClassName?: string
   noSpacing?: boolean
   noMaxWidth?: boolean
+  center?: boolean
 }
 
-const TextContainer: React.FC<Props> = ({ children, className, noSpacing, noMaxWidth, innerClassName, ...props }) => {
+const TextContainer: React.FC<Props> = ({ children, className, noSpacing, noMaxWidth, innerClassName, center = false, ...props }) => {
   const classes = useStyles()
 
   return (
     <section className={clsx(classes.root, !noSpacing && classes.space, className)} {...props}>
-      <div className={clsx(classes.inner, noMaxWidth && classes.noMaxWidth, innerClassName)}>{children}</div>
+      <div className={clsx(classes.inner, noMaxWidth && classes.noMaxWidth, center && classes.center, innerClassName)}>{children}</div>
     </section>
   )
 }

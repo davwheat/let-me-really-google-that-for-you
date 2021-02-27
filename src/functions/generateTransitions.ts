@@ -1,4 +1,5 @@
 const Durations = {
+  verylong: 750,
   long: 250,
   medium: 200,
   short: 125,

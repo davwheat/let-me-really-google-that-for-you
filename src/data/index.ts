@@ -23,12 +23,14 @@ const SearchEngines: SearchEngine[] = [
     id: 'g',
     createSearchUrl: query => `https://google.com/search?q=${encodeURI(query)}`,
     createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURI(query)}`,
+    siteUrl: 'google.com',
   },
   {
     name: 'DuckDuckGo',
     id: 'ddg',
     createSearchUrl: query => `https://duckduckgo.com/?q=${encodeURI(query)}`,
     createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURI(query)}&se=ddg`,
+    siteUrl: 'duckduckgo.com',
   },
 ]
 

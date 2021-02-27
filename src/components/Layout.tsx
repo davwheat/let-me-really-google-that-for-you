@@ -8,6 +8,7 @@ import '../css/baseline.less'
 import ErrorBoundary from './ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core'
 import theme from '../theme'
+import Footer from './Footer'
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -15,6 +16,7 @@ const Layout: React.FC = ({ children }) => {
       <ThemeProvider theme={theme}>
         <div>
           <main>{children}</main>
+          <Footer />
         </div>
       </ThemeProvider>
     </ErrorBoundary>
