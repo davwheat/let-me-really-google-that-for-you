@@ -2,7 +2,7 @@
   "name": "let-me-really-google-that-for-you",
   "private": true,
   "description": "A version of LMGTFY, without ads or trackers, and that ACTUALLY uses Google!",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "David Wheatley",
     "email": "hi@davwheat.dev",
