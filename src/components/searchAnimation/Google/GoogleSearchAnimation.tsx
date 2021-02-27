@@ -168,7 +168,7 @@ const GoogleSearchAnimation: React.FC<SearchAnimationProps> = ({ searchQuery, se
 
   return (
     <>
-      <SearchAnimationBoxes currentAnimation={GetAnimationStep(currentAnimation)} />
+      <SearchAnimationBoxes currentAnimation={GetAnimationStep(currentAnimation)} searchEngine={searchEngine} />
       <article className={classes.root}>
         <VirtualCursor
           onTransitionEnd={() => {
