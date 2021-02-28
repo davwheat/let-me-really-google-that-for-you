@@ -20,10 +20,17 @@ module.exports = api => {
   }
 
   return {
-    plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
+    plugins: [
+      [
+        '@babel/plugin-proposal-decorators',
+        {
+          legacy: true,
+        },
+      ],
+      'babel-plugin-jsx-remove-data-test-id',
+    ],
     presets: [
       [
-        'babel-plugin-jsx-remove-data-test-id',
         'babel-preset-gatsby',
         {
           targets: {
