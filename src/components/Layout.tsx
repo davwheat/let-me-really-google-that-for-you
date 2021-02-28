@@ -10,10 +10,8 @@ const Layout: React.FC = ({ children }) => {
   return (
     <ErrorBoundary>
       <ThemeProvider theme={theme}>
-        <div>
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <main>{children}</main>
+        <Footer />
       </ThemeProvider>
     </ErrorBoundary>
   )

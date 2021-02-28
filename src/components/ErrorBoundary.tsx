@@ -8,6 +8,7 @@ import clsx from 'clsx'
 
 interface ErrorBoundaryState {
   hasError: boolean
+  error?: unknown
 }
 
 interface Props extends WithStyles<typeof useStyles> {
@@ -31,16 +32,22 @@ const useStyles = () => ({
 class ErrorBoundary extends React.Component<Props, ErrorBoundaryState> {
   constructor(props) {
     super(props)
-    this.state = { hasError: false }
+    this.state = {
+      hasError: false,
+      error: null,
+    }
   }
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
 
     if (process.env.NODE_ENV !== 'development') {
-      console.error(error)
-
-      return { hasError: true }
+      return {
+        hasError: true,
+        error,
+      }
+    } else {
+      throw error
     }
   }
 
@@ -53,13 +60,19 @@ class ErrorBoundary extends React.Component<Props, ErrorBoundaryState> {
     const { classes, inline } = this.props
 
     if (this.state.hasError) {
+      const RefreshButton = () => (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <Link data-testid="reload-link" onClick={() => window.location.reload()}>
+          refreshing the page
+        </Link>
+      )
+
       if (inline) {
         return (
-          <section className={clsx(classes.root, classes.inline)}>
+          <section data-testid="error-boundary-inline" className={clsx(classes.root, classes.inline)}>
             <Paragraph>Uh oh, something went wrong.</Paragraph>
             <Whisper>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              Please try <Link onClick={() => window.location.reload()}>refreshing the page</Link>.
+              Please try <RefreshButton />.
             </Whisper>
             <Whisper>
               Still having issues? Let me know <Link url="https://twitter.com/davwheat_">on Twitter</Link>.
@@ -73,8 +86,7 @@ class ErrorBoundary extends React.Component<Props, ErrorBoundaryState> {
           <Shout>Uh oh, something went wrong.</Shout>
           <Paragraph bold>It's not you, it's us.</Paragraph>
           <Paragraph>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            Please try <Link onClick={() => window.location.reload()}>refreshing the page</Link>.
+            Please try <RefreshButton />.
           </Paragraph>
           <Paragraph>
             Still having issues? Let me know <Link url="https://twitter.com/davwheat_">on Twitter</Link>.

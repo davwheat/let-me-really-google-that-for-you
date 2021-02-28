@@ -41,7 +41,7 @@ interface Props {
 /**
  * Creates an `<a>` or `<button>` tag which conforms to the design scheme.
  */
-const Link: React.FC<Props> = ({ internal = false, url, title, onClick, className, id, children, target }) => {
+const Link: React.FC<Props> = ({ internal = false, url, title, onClick, className, id, children, target, ...props }) => {
   const classes = useStyles()
 
   const isAnchor = typeof url === 'string' && url.startsWith('#')
@@ -61,6 +61,7 @@ const Link: React.FC<Props> = ({ internal = false, url, title, onClick, classNam
     title,
     id,
     target,
+    ...props,
   }
 
   if (internal) {
