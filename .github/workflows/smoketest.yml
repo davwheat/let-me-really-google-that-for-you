@@ -114,10 +114,47 @@ jobs:
       - name: Verify formatting
         run: yarn format:check
 
+  test:
+    runs-on: ubuntu-latest
+    needs: [lint, formatting]
+    name: Run tests
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v2
+        id: moduleCache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.sha }}-
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Upload coverage
+        # Run even if tests fail
+        if: always()
+        uses: codecov/codecov-action@v1
+        with:
+          directory: coverage
+
   build:
     name: Build code and deploy to production
     runs-on: ubuntu-latest
-    needs: [lint, formatting]
+    needs: [test]
 
     strategy:
       matrix:
