@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   noPad: {
     paddingBottom: 0,
   },
-  centred: {
+  centered: {
     textAlign: 'center',
   },
 })
@@ -37,7 +37,7 @@ interface Props {
    */
   noPadding?: boolean
   /**
-   * Should paragraph be centred
+   * Should paragraph be centered
    * @default false
    */
   center?: boolean
@@ -47,10 +47,14 @@ interface Props {
   id?: string
 }
 
-const Loud: React.FC<Props> = ({ children, className, noPadding, center }) => {
+const Loud: React.FC<Props> = ({ children, className, noPadding, center, id }) => {
   const classes = useStyles()
 
-  return <h1 className={clsx(classes.root, noPadding && classes.noPad, center && classes.centred, className)}>{children}</h1>
+  return (
+    <h1 id={id} className={clsx(classes.root, noPadding && classes.noPad, center && classes.centered, className)}>
+      {children}
+    </h1>
+  )
 }
 
 export default Loud

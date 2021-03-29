@@ -2,11 +2,11 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-import { Shout } from '../src/typography'
+import { Megaphone } from '../../src/typography'
 
-describe('Shout', () => {
+describe('Megaphone', () => {
   it('works', async () => {
-    render(<Shout>text</Shout>)
+    render(<Megaphone>text</Megaphone>)
 
     const text = screen.queryByText(/text/i)
 
@@ -15,7 +15,7 @@ describe('Shout', () => {
   })
 
   it('renders without padding', async () => {
-    render(<Shout noPadding>text</Shout>)
+    render(<Megaphone noPadding>text</Megaphone>)
 
     const text = screen.queryByText(/text/i)
 
@@ -23,7 +23,7 @@ describe('Shout', () => {
   })
 
   it('uses custom classNames', async () => {
-    render(<Shout className="test">text</Shout>)
+    render(<Megaphone className="test">text</Megaphone>)
 
     const text = screen.queryByText(/text/i)
 

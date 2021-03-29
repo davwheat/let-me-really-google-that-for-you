@@ -1,12 +1,12 @@
-const Durations = {
+export const Durations = {
   verylong: 750,
   long: 250,
   medium: 200,
   short: 125,
 } as const
 
-const DefaultDuration = Durations.medium
-const DefaultEasing = 'ease-in-out'
+export const DefaultDuration = Durations.medium
+export const DefaultEasing = 'ease-in-out'
 
 /**
  * Generates a transition object to be used for CSS-in-JS.
@@ -62,7 +62,7 @@ export default function generateTransitions(
     // only one value to transition
 
     let _easing = easing || DefaultEasing
-    let _duration
+    let _duration: number
 
     /*
       if we have multiple easing/duration values, use, in desc. order:

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   bold: {
     fontWeight: 600,
   },
-  centred: {
+  centered: {
     textAlign: 'center',
   },
 })
@@ -32,7 +32,7 @@ interface Props {
    */
   noPadding?: boolean
   /**
-   * Should paragraph be centred
+   * Should paragraph be centered
    * @default false
    */
   center?: boolean
@@ -48,7 +48,7 @@ const Whisper: React.FC<Props> = ({ children, className, noPadding, bold, center
   const classes = useStyles()
 
   const props = {
-    className: clsx(classes.root, noPadding && classes.noPad, bold && classes.bold, center && classes.centred, className),
+    className: clsx(classes.root, noPadding && classes.noPad, bold && classes.bold, center && classes.centered, className),
   }
 
   if (inline) {

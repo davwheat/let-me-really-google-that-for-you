@@ -2,11 +2,11 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-import { Whisper } from '../src/typography'
+import { Paragraph } from '../../src/typography'
 
-describe('Whisper', () => {
+describe('Paragraph', () => {
   it('works', async () => {
-    render(<Whisper>text</Whisper>)
+    render(<Paragraph>text</Paragraph>)
 
     const text = screen.queryByText(/text/i)
 
@@ -15,7 +15,7 @@ describe('Whisper', () => {
   })
 
   it('renders in bold', async () => {
-    render(<Whisper bold>text</Whisper>)
+    render(<Paragraph bold>text</Paragraph>)
 
     const text = screen.queryByText(/text/i)
 
@@ -23,15 +23,15 @@ describe('Whisper', () => {
   })
 
   it('renders without padding', async () => {
-    render(<Whisper noPadding>text</Whisper>)
+    render(<Paragraph noPadding>text</Paragraph>)
 
     const text = screen.queryByText(/text/i)
 
     expect(text).toHaveStyle('padding-bottom: 0')
   })
 
-  it('renders centred', async () => {
-    render(<Whisper center>text</Whisper>)
+  it('renders centered', async () => {
+    render(<Paragraph center>text</Paragraph>)
 
     const text = screen.queryByText(/text/i)
 
@@ -39,7 +39,7 @@ describe('Whisper', () => {
   })
 
   it('renders inline', async () => {
-    render(<Whisper inline>text</Whisper>)
+    render(<Paragraph inline>text</Paragraph>)
 
     const text = screen.queryByText(/text/i)
 
@@ -48,7 +48,7 @@ describe('Whisper', () => {
   })
 
   it('uses custom classNames', async () => {
-    render(<Whisper className="test">text</Whisper>)
+    render(<Paragraph className="test">text</Paragraph>)
 
     const text = screen.queryByText(/text/i)
 

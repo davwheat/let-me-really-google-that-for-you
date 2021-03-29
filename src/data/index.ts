@@ -17,7 +17,7 @@ const Breakpoints = {
   },
 } as const
 
-const SearchEngines: SearchEngine[] = [
+const SearchEngines: ReadonlyArray<SearchEngine> = [
   {
     name: 'Google',
     id: 'g',
@@ -32,7 +32,7 @@ const SearchEngines: SearchEngine[] = [
     createLmrgtfyUrl: query => `https://${window.location.host}/?q=${encodeURIComponent(query)}&se=ddg`,
     siteUrl: 'duckduckgo.com',
   },
-]
+] as const
 
 const SearchEngineIds: SearchEngineId[] = SearchEngines.reduce((arr, se) => [...arr, se.id], [])
 
