@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
 
             <BulletSeparator />
 
-            <Link target="_blank" url="mailto:hi@davwheat.dev">
+            <Link target="_blank" url="mailto:lmgtfy@davwheat.dev">
               Email
             </Link>
           </Whisper>
