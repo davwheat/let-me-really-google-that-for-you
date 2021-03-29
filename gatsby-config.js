@@ -11,15 +11,19 @@ const prodPlugins = !__IS_DEV__
           exclude: ['error', 'warn'],
         },
       },
+      {
+        resolve: `gatsby-plugin-sitemap`,
+        options: {
+          sitemapSize: 1000,
+        },
+      },
     ]
   : []
 
 module.exports = {
-  flags: {
-    FAST_DEV: true,
-    FAST_REFRESH: true,
+  siteMetadata: {
+    siteUrl: `https://lmrgtfy.davwheat.dev`,
   },
-  siteMetadata: {},
   plugins: [
     ...prodPlugins,
     `gatsby-plugin-preact`,
