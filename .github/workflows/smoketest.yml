@@ -132,7 +132,7 @@ jobs:
           path: ./node_modules
           key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Restore Gatsby build cache
+      - name: Restore Gatsby cache
         uses: actions/cache@v2
         id: gatsbyCache
         with:
@@ -141,9 +141,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gatsby-cache-
 
-      - name: Restore Gatsby output
+      - name: Restore Gatsby build output
         uses: actions/cache@v2
-        id: gatsbyCache
+        id: gatsbyOut
         with:
           path: ./public
           key: ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
@@ -180,7 +180,7 @@ jobs:
         id: gatsbyCache
         with:
           path: ./.cache
-          key: ${{ runner.os }}-gatsby-cache-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('**/yarn.lock') }}
 
       - name: Lint using ESLint
         run: yarn lint
@@ -199,12 +199,19 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Restore Gatsby cache
+        uses: actions/cache@v2
+        id: gatsbyCache
+        with:
+          path: ./.cache
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('**/yarn.lock') }}
+
       - name: Restore Gatsby output
         uses: actions/cache@v2
         id: gatsbyOut
         with:
           path: ./public
-          key: ${{ runner.os }}-gatsby-out-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
 
       - name: Upload a compiled website
         uses: actions/upload-artifact@v2
