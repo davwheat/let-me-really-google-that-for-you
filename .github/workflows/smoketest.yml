@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
   pull_request:
+  workflow_dispatch:
 
 env:
   NODE_VERSION: 14.x
@@ -196,8 +197,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
 
       - name: Restore Gatsby cache
         uses: actions/cache@v2
@@ -220,9 +219,8 @@ jobs:
           path: public/
 
       - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: prod
-          FOLDER: public
-          CLEAN: true
+          branch: prod
+          folder: public
+          clean: true
