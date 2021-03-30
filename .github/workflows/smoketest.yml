@@ -33,7 +33,7 @@ jobs:
         id: yarnCache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
@@ -42,7 +42,7 @@ jobs:
         id: moduleCache
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-${{ github.sha }}-
             ${{ runner.os }}-node-modules-
@@ -74,7 +74,7 @@ jobs:
         id: moduleCache
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('yarn.lock') }}
 
       - name: Verify formatting
         run: yarn format:check
@@ -98,7 +98,7 @@ jobs:
         id: moduleCache
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('yarn.lock') }}
 
       - name: Run tests
         run: yarn test
@@ -131,14 +131,14 @@ jobs:
         id: moduleCache
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('yarn.lock') }}
 
       - name: Restore Gatsby cache
         uses: actions/cache@v2
         id: gatsbyCache
         with:
           path: ./.cache
-          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-gatsby-cache-
 
@@ -147,9 +147,9 @@ jobs:
         id: gatsbyOut
         with:
           path: ./public
-          key: ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
+          key: ${{ runner.os }}-gatsby-out-${{ hashFiles('yarn.lock') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-gatsby-out-${{ hashFiles('yarn.lock') }}
             ${{ runner.os }}-gatsby-out-
 
       - name: Build site
@@ -174,14 +174,14 @@ jobs:
         id: moduleCache
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-modules-${{ github.sha }}-${{ hashFiles('yarn.lock') }}
 
       - name: Restore Gatsby cache
         uses: actions/cache@v2
         id: gatsbyCache
         with:
           path: ./.cache
-          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('yarn.lock') }}
 
       - name: Lint using ESLint
         run: yarn lint
@@ -203,14 +203,14 @@ jobs:
         id: gatsbyCache
         with:
           path: ./.cache
-          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('yarn.lock') }}
 
       - name: Restore Gatsby output
         uses: actions/cache@v2
         id: gatsbyOut
         with:
           path: ./public
-          key: ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
+          key: ${{ runner.os }}-gatsby-out-${{ hashFiles('yarn.lock') }}-${{ github.sha }}
 
       - name: Upload a compiled website
         uses: actions/upload-artifact@v2
