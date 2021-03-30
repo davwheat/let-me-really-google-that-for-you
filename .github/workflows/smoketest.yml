@@ -6,23 +6,22 @@ on:
       - "main"
   pull_request:
 
+env:
+  NODE_VERSION: 14.x
+
 jobs:
   install:
     runs-on: ubuntu-latest
     name: Prepare repo
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -60,18 +59,14 @@ jobs:
     needs: [install]
     name: Verify formatting
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore dependencies cache
         uses: actions/cache@v2
@@ -88,18 +83,14 @@ jobs:
     needs: [install]
     name: Run tests
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore dependencies cache
         uses: actions/cache@v2
@@ -123,20 +114,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: [formatting, test]
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           persist-credentials: false
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore dependencies cache
         uses: actions/cache@v2
@@ -150,38 +137,36 @@ jobs:
         id: gatsbyCache
         with:
           path: ./.cache
-          key: ${{ runner.os }}-gatsby-cache-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-gatsby-cache-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-cache-${{ github.sha }}-
             ${{ runner.os }}-gatsby-cache-
+
+      - name: Restore Gatsby output
+        uses: actions/cache@v2
+        id: gatsbyCache
+        with:
+          path: ./public
+          key: ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-out-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-gatsby-out-
 
       - name: Build site
         run: yarn build:ci
-
-      - name: Cache Gatsby output
-        uses: actions/cache@v2
-        id: gatsbyOut
-        with:
-          path: ./public
-          key: ${{ runner.os }}-gatsby-out-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
 
   lint:
     runs-on: ubuntu-latest
     needs: [build]
     name: Lint
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore dependencies cache
         uses: actions/cache@v2
@@ -208,10 +193,6 @@ jobs:
     # Only deploy on push to main branch
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -220,9 +201,9 @@ jobs:
 
       - name: Restore Gatsby output
         uses: actions/cache@v2
-        id: gatsbyCache
+        id: gatsbyOut
         with:
-          path: ./.cache
+          path: ./public
           key: ${{ runner.os }}-gatsby-out-${{ github.sha }}-${{ hashFiles('**/yarn.lock') }}
 
       - name: Upload a compiled website
