@@ -6,8 +6,10 @@ import Link from './Link'
 import BodySection from './BodySection'
 import { makeStyles } from '@material-ui/styles'
 
-import { version } from '../../package.json'
 import { SearchEngineNames } from '../data'
+import packageJson from '../../package.json'
+
+const SITE_VERSION = packageJson.version
 
 const useStyles = makeStyles({
   contactLinks: {
@@ -40,7 +42,7 @@ const Footer: React.FC = () => {
 
         <Whisper>{searchEngineNames} and LMGTFY are trademarks of their respective owners.</Whisper>
 
-        <Whisper>Website version {version}</Whisper>
+        <Whisper>Website version {SITE_VERSION}</Whisper>
 
         <div className={classes.contactLinks}>
           <Whisper>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Meta, Title } from 'react-head'
-import { description } from '../../package.json'
+import packageJson from '../../package.json'
+
+const DESCRIPTION = packageJson.description
 
 interface Props {
   /**
@@ -10,7 +12,7 @@ interface Props {
 }
 
 const SEO: React.FC<Props> = ({ title }) => {
-  const metaDescription = description
+  const metaDescription = DESCRIPTION
   const siteName = 'Let me REALLY Google that for you'
 
   if (typeof window === 'undefined') {
