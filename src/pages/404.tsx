@@ -31,7 +31,7 @@ const IndexPage: React.FC = () => {
         <Shout>This page doesn't exist</Shout>
 
         <Paragraph>
-          <Link internal className={classes.linkOrBtn} url="/">
+          <Link internal url="/">
             Go to home page
           </Link>
         </Paragraph>
