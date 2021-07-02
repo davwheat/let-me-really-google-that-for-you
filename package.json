@@ -25,7 +25,6 @@
     "gatsby-plugin-react-head": "https://github.com/davwheat/gatsby-plugin-react-head",
     "gatsby-plugin-react-svg": "^3.0.1",
     "gatsby-plugin-remove-console": "^0.0.2",
-    "gatsby-plugin-sitemap": "^4.4.0",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.24",
     "gatsby-plugin-webpack-size": "^2.0.1",
     "mdi-react": "^7.5.0",
@@ -96,8 +95,5 @@
   },
   "bugs": {
     "url": "https://github.com/davwheat/world-cup-of-tocs/issues"
-  },
-  "resolutions": {
-    "sharp": "0.27.0"
   }
 }
