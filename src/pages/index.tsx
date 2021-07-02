@@ -15,7 +15,7 @@ import { NoSsr } from '@material-ui/core'
 const IndexPage: React.FC = () => {
   const queryParams = typeof window !== 'undefined' ? queryString.parse(window.location.search) : {}
   const searchQuery = queryParams.q
-  const searchEngineId: SearchEngineId = queryParams.se || 'g'
+  const searchEngineId: SearchEngineId = (queryParams.se || 'g') as SearchEngineId
 
   const pageContent = searchQuery ? (
     <ShowSearchAnimation searchQuery={decodeURIComponent(searchQuery.toString())} searchEngineId={searchEngineId} />
